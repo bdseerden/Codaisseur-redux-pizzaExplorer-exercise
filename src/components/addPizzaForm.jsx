@@ -1,9 +1,11 @@
-// src/components/AddPizzaForm.js
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPizza } from "../store/pizzas/slice";
 
 const AddPizzaForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
 
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)
@@ -11,9 +13,17 @@ const AddPizzaForm = () => {
 
     console.log("new pizza:", name, description);
 
-    // TODO:
+    const newPizza = {
+      name,
+      description,
+    };
+
     // - dispatch an action that sends the new pizza to the store
+    dispatch(addPizza(newPizza));
+
     // - clear the input fields
+    setName("");
+    setDescription("");
   };
 
   return (
@@ -46,4 +56,4 @@ const AddPizzaForm = () => {
   );
 };
 
-export default AddPizzaForm;
+export default AddPizzaForm
