@@ -35,7 +35,11 @@ const AddPizzaForm = () => {
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              console.log("event", e.target)
+              setName(e.target.value)
+            
+            }}
           />
         </label>
       </p>
